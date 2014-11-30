@@ -31,7 +31,9 @@
     "glob": "^4.0.5"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "bm-select",
+    "select"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"

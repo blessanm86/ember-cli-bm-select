@@ -1,0 +1,34 @@
+bm-select, bm-selected, bm-options, bm-option {
+    display: block;
+    box-sizing: border-box;
+}
+
+bm-select {
+    position: relative;
+    border: 1px solid #000; /*Needs to be removed from default styles*/
+}
+
+bm-options {
+    display: none;
+    position: absolute;
+    border: 1px solid #000; /*Needs to be removed from default styles*/
+    left: 0;
+    right: 0;
+}
+
+/*bm-select.is-open > bm-options {
+    display: block;
+}*/
+
+bm-selected, bm-option {
+    padding: 5px; /*Needs to be removed from default styles*/
+}
+
+bm-selected:after {
+    content: "";
+    border-top: 12px solid black;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    float: right;
+    margin-top: 3px;
+}
