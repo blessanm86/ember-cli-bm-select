@@ -40,19 +40,19 @@ export default Em.Component.extend({
 
     setPreviousItemFocus: function() {
         var index = this.get('focusIndex') - 1;
-        if (index == -1) { index = this.get('options.length') - 1; }
+        if (index === -1) { index = this.get('options.length') - 1; }
         this.focusItemAt(index);
     },
 
     setNextItemFocus: function() {
         var index = this.get('focusIndex') + 1;
-        if (index == this.get('options.length')) { index = 0; }
+        if (index === this.get('options.length')) { index = 0; }
         this.focusItemAt(index);
     },
 
     focusItemAt: function(index) {
         this.set('focusIndex', index);
-        Ember.run.schedule('afterRender', this, function() {
+        Em.run.schedule('afterRender', this, function() {
             this.get('options').objectAt(index).$().focus();
         });
     }

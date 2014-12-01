@@ -57,8 +57,6 @@ export default Em.Component.extend({
     },
 
     navigateOnKeyDown: function(event) {
-        var key = event.keyCode;
-
         switch(event.keyCode) {
             //esc
             case 27: 
@@ -91,7 +89,6 @@ export default Em.Component.extend({
                     this.openOptions();
                 }
                 break;
-
         }
 
         event.preventDefault();
