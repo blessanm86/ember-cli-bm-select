@@ -1,3 +1,17 @@
 <h2 id='title'>Welcome to Ember.js</h2>
 
-{{outlet}}
+{{#bm-select value=selectedCountry}}
+        
+    {{#bm-selected}}
+        {{selectedCountry}}
+    {{/bm-selected}}
+    
+    {{#bm-options}}                    
+        {{#each item in model.countriesObj}}
+            {{#bm-option data=item key="name"}}
+                {{item.name}}
+            {{/bm-option}}
+        {{/each}}
+    {{/bm-options}}
+
+{{/bm-select}}
