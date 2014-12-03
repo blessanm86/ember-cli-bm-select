@@ -1,5 +1,7 @@
 # Bm-select
 
+[![Build Status](https://travis-ci.org/blessenm/ember-cli-bm-select.svg)](https://travis-ci.org/blessenm/ember-cli-bm-select)
+
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
