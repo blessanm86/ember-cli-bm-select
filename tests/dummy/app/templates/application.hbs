@@ -1,6 +1,6 @@
 <h2 id='title'>Welcome to Ember.js</h2>
 
-{{#bm-select value=selectedCountry}}
+{{#bm-select value=selectedCountry action="countryChanged"}}
         
     {{#bm-selected}}
         {{selectedCountry}}
@@ -15,3 +15,5 @@
     {{/bm-options}}
 
 {{/bm-select}}
+
+<p>The selected country is <span id="country-value">{{country}}</span></p>
