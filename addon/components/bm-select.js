@@ -148,18 +148,22 @@ export default Em.Component.extend({
    * @method navigateOnKeyDown
    */
   navigateOnKeyDown: function(event) {
+    var handled = false;
+
     switch(event.keyCode) {
       //esc
       case 27:
         this.closeOptions();
+        handled = true;
         break;
 
       //up-arrow
       case 38:
-      if(this.get('isOpen')) {
-        this.get('options').setPreviousItemFocus(this.get('selectedOption'));
-      }
-      break;
+        if(this.get('isOpen')) {
+          this.get('options').setPreviousItemFocus(this.get('selectedOption'));
+        }
+        handled = true;
+        break;
 
       //down-arrow
       case 40:
@@ -168,6 +172,7 @@ export default Em.Component.extend({
         } else {
           this.openOptions();
         }
+        handled = true;
         break;
 
       //enter
@@ -179,7 +184,12 @@ export default Em.Component.extend({
         } else {
           this.openOptions();
         }
+        handled = true;
         break;
+    }
+
+    if(handled) {
+      event.preventDefault();
     }
   }.on('keyDown')
 
