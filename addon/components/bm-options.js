@@ -27,7 +27,7 @@ export default Em.Component.extend({
     }.property('selectedOption'),
 
     setDefualts: function() {
-        this.set('options', Ember.ArrayProxy.create({content: []}));
+        this.set('options', Em.ArrayProxy.create({content: []}));
     }.on('init'),
 
     registerWithSelect: function() {
