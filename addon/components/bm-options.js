@@ -26,9 +26,13 @@ export default Em.Component.extend({
         return this.get('options').indexOf(this.get('selectedOption'));
     }.property('selectedOption'),
 
+    setDefualts: function() {
+        this.set('options', Ember.ArrayProxy.create({content: []}));
+    }.on('init'),
+
     registerWithSelect: function() {
         this.get('select').registerOptions(this);
-    }.on('didInsertElement'),
+    }.on('willInsertElement'),
 
     registerOption: function(item) {
         this.get('options').addObject(item);
@@ -51,6 +55,7 @@ export default Em.Component.extend({
     },
 
     focusItemAt: function(index) {
+        if(index === -1) { index = 0; }
         this.set('focusIndex', index);
         Em.run.schedule('afterRender', this, function() {
             this.get('options').objectAt(index).$().focus();

@@ -58,6 +58,11 @@ export default Em.Component.extend({
     closeOptions: function() {
         this.set('isOpen', false);
         this.set('options.focusIndex', -1);
+
+        //set focus back to bm-select on dropdown close.
+        Ember.run.schedule('afterRender', this, function() {
+            this.$().focus();
+        });
     },
 
     navigateOnKeyDown: function(event) {
@@ -94,8 +99,6 @@ export default Em.Component.extend({
                 }
                 break;
         }
-
-        event.preventDefault();
     }.on('keyDown')
 
 });

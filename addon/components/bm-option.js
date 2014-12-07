@@ -1,7 +1,7 @@
 import Em from 'ember';
 
 export default Em.Component.extend({
-    
+
     tagName: 'bm-option',
 
     attributeBindings: [
@@ -47,11 +47,14 @@ export default Em.Component.extend({
 
     setValueBasedOnKey: function() {
         //Array of primitive values are the items. So value is already set.
-        if(this.get('value')) { return; }
-
-        //Array of objects are the items. So need to get actual value.
-        var key = 'data.' + this.get('key');
-        this.set('value', this.get(key));
+        //Setting data same as value
+        if(this.get('value')) {
+            this.set('data', this.get('value'));
+        } else {
+            //Array of objects are the items. So need to get actual value.
+            var key = 'data.' + this.get('key');
+            this.set('value', this.get(key));
+        }
     }.on('init'),
 
     registerWithOptions: function() {
@@ -65,11 +68,11 @@ export default Em.Component.extend({
     selectFromSelectValue: function() {
         //Ignore if already selected
         if(this.get('isSelected')) { return; }
-    
+
         if(this.get('select.value') === this.get('value')) {
             this.selectOption();
         }
-    }.observes('select.value').on('didInsertElement'),
+    }.observes('select.value').on('willInsertElement'),
 
     selectOption: function() {
         this.get('select').selectOption(this);
