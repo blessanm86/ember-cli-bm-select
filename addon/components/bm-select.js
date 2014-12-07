@@ -1,7 +1,7 @@
 import Em from 'ember';
 
 export default Em.Component.extend({
-    
+
     tagName: 'bm-select',
 
     classNameBindings: ['isOpen'],
@@ -12,7 +12,7 @@ export default Em.Component.extend({
         'ariaExpanded:aria-expanded',
         'tabindex',
         'value'
-    ],    
+    ],
 
     isOpen: false,
 
@@ -26,9 +26,9 @@ export default Em.Component.extend({
 
     tabindex: 0,
 
-    value: null,    
+    value: null,
 
-    options: null,    
+    options: null,
 
     selectedOption: null,
 
@@ -43,7 +43,11 @@ export default Em.Component.extend({
     },
 
     toggleOptions: function() {
-        this.toggleProperty('isOpen');
+        if(this.get('isOpen')) {
+            this.closeOptions();
+        } else {
+            this.openOptions();
+        }
     }.on('click'),
 
     openOptions: function() {
@@ -59,7 +63,7 @@ export default Em.Component.extend({
     navigateOnKeyDown: function(event) {
         switch(event.keyCode) {
             //esc
-            case 27: 
+            case 27:
                 this.closeOptions();
                 break;
 
@@ -69,7 +73,7 @@ export default Em.Component.extend({
                     this.get('options').setPreviousItemFocus(this.get('selectedOption'));
                 }
                 break;
-            
+
             //down-arrow
             case 40:
                 if(this.get('isOpen')) {

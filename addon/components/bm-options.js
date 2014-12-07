@@ -1,7 +1,7 @@
 import Em from 'ember';
 
 export default Em.Component.extend({
-    
+
     tagName: 'bm-options',
 
     attributeBindings: [
@@ -24,7 +24,7 @@ export default Em.Component.extend({
 
     selectedIndex: function() {
         return this.get('options').indexOf(this.get('selectedOption'));
-    }.property('selected'),
+    }.property('selectedOption'),
 
     registerWithSelect: function() {
         this.get('select').registerOptions(this);
