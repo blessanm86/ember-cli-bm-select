@@ -2,64 +2,144 @@ import Em from 'ember';
 
 export default Em.Component.extend({
 
-    tagName: 'bm-options',
+  tagName: 'bm-options',
 
-    attributeBindings: [
-        'ariaHidden:aria-hidden'
-    ],
+  attributeBindings: [
+    'ariaHidden:aria-hidden'
+  ],
 
-    ariaHidden: function() {
-        return !this.get('isVisible')+'';
-    }.property('isVisible'),
+  /**
+   * Tells screenreaders whether this component is visible.
+   *
+   * @property 'ariaHidden'
+   * @type String
+   * @private
+   */
+  ariaHidden: function() {
+    return !this.get('isVisible')+'';
+  }.property('isVisible'),
 
-    isVisible: Em.computed.alias('parentView.isOpen'),
+  /**
+   * This flag is set to true/false based on whether the dropdown is
+   * opened/closed.
+   *
+   * @property isVisible
+   * @type Boolean
+   */
+  isVisible: Em.computed.alias('parentView.isOpen'),
 
-    select: Em.computed.alias('parentView'),
+  /**
+   * Reference to the BmSelectComponent instance.
+   *
+   * @property select
+   * @type BmSelect
+   */
+  select: Em.computed.alias('parentView'),
 
-    selectedOption: Em.computed.alias('parentView.selectedOption'),
+  /**
+   * Reference to the selected BmOptionComponent instance.
+   *
+   * @property selectedOption
+   * @type BmOption
+   */
+  selectedOption: Em.computed.alias('parentView.selectedOption'),
 
-    options: [],
+  /**
+   * Storage for all BmOption components, facilitating keyboard navigation.
+   *
+   * @property options
+   * @type ArrayProxy
+   */
+  options: null,
 
-    focusIndex: -2,
+  /**
+   * Tracks the index of the focussed option so we can move between previous/next.
+   *
+   * @property focusIndex
+   * @type Number
+   */
+  focusIndex: -2,
 
-    selectedIndex: function() {
-        return this.get('options').indexOf(this.get('selectedOption'));
-    }.property('selectedOption'),
+  /**
+   * Reference to the selected BmOptionComponent instance's index.
+   *
+   * @property selectedIndex
+   * @type Number
+   */
+  selectedIndex: function() {
+    return this.get('options').indexOf(this.get('selectedOption'));
+  }.property('selectedOption'),
 
-    setDefualts: function() {
-        this.set('options', Em.ArrayProxy.create({content: []}));
-    }.on('init'),
+  /**
+   * Creates the options ArrayProxy on init (otherwise would be shared by every
+   * instance)
+   *
+   * @private
+   */
+  setDefualts: function() {
+    this.set('options', Em.ArrayProxy.create({content: []}));
+  }.on('init'),
 
-    registerWithSelect: function() {
-        this.get('select').registerOptions(this);
-    }.on('willInsertElement'),
+  /**
+   * Registers this options with the BmSelectComponent instance.
+   *
+   * @method registerWithSelect
+   */
+  registerWithSelect: function() {
+    this.get('select').registerOptions(this);
+  }.on('willInsertElement'),
 
-    registerOption: function(item) {
-        this.get('options').addObject(item);
-    },
+  /**
+   * Register the BmOptionComponent instance.
+   *
+   * @method registerOption
+   */
+  registerOption: function(item) {
+    this.get('options').addObject(item);
+  },
 
-    unregisterOption: function(item) {
-        this.get('options').removeObject(item);
-    },
+  /**
+   * Remove the BmOptionComponent instance.
+   *
+   * @method unregisterOption
+   */
+  unregisterOption: function(item) {
+    this.get('options').removeObject(item);
+  },
 
-    setPreviousItemFocus: function() {
-        var index = this.get('focusIndex') - 1;
-        if (index === -1) { index = this.get('options.length') - 1; }
-        this.focusItemAt(index);
-    },
+  /**
+   * Sets the focus to the previous item based on the current focus index.
+   *
+   * @method setPreviousItemFocus
+   */
+  setPreviousItemFocus: function() {
+    var index = this.get('focusIndex') - 1;
+    if (index === -1) { index = this.get('options.length') - 1; }
+    this.focusItemAt(index);
+  },
 
-    setNextItemFocus: function() {
-        var index = this.get('focusIndex') + 1;
-        if (index === this.get('options.length')) { index = 0; }
-        this.focusItemAt(index);
-    },
+  /**
+   * Sets the focus to the next item based on the current focus index.
+   *
+   * @method setNextItemFocus
+   */
+  setNextItemFocus: function() {
+    var index = this.get('focusIndex') + 1;
+    if (index === this.get('options.length')) { index = 0; }
+    this.focusItemAt(index);
+  },
 
-    focusItemAt: function(index) {
-        if(index === -1) { index = 0; }
-        this.set('focusIndex', index);
-        Em.run.schedule('afterRender', this, function() {
-            this.get('options').objectAt(index).$().focus();
-        });
-    }
+  /**
+   * Sets the focus to the option at the passed in index.
+   *
+   * @method focusItemAt
+   */
+  focusItemAt: function(index) {
+    if(index === -1) { index = 0; }
+    this.set('focusIndex', index);
+    Em.run.schedule('afterRender', this, function() {
+      this.get('options').objectAt(index).$().focus();
+    });
+  }
 
 });
