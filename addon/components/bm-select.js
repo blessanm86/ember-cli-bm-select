@@ -131,15 +131,39 @@ export default Em.Component.extend({
    *
    * @method closeOptions
    */
-  closeOptions: function() {
+  closeOptions: function(options) {
+    options = options || { focus: true};
+
     this.set('isOpen', false);
     this.set('options.focusIndex', -1);
 
     //set focus back to bm-select on dropdown close.
-    Em.run.schedule('afterRender', this, function() {
-      this.$().focus();
-    });
+    //dont do this if focussing out or click outside.
+    if(options.focus) {
+      Em.run.schedule('afterRender', this, function() {
+        this.$().focus();
+      });
+    }
   },
+
+  /**
+   * Closes the dropdown when focus changes to another element outside
+   * or if focus lost by clicking outside. Bound to focusOut.
+   *
+   * @method lostFocus
+   */
+  lostFocus: function() {
+    if(this.get('isOpen')) {
+      Em.run.later(this, function() {
+        var focussedElement = document.activeElement;
+        var isFocussedOut = this.$().has(focussedElement).length === 0 && !this.$().is(focussedElement);
+
+        if(isFocussedOut) {
+          this.closeOptions({focus:false});
+        }
+      }, 0);
+    }
+  }.on('focusOut'),
 
   /**
    * Handles the keydown event once the component gains focus.
