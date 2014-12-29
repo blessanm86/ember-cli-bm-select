@@ -57,10 +57,9 @@ test("bm-select Acceptance Test", function() {
     var value = find('#country-value').text();
     equal(value, selectedOptionValue, "The actions from the component are triggered properly on option selection");
 
-    //click bm-select to close the options or will break the tests.
-    //The teardown method of tests will trigger a focusout event on bm-select.
-    //If the options menu is closed then the focusout event will trigger with no side effects.
-    click('bm-select');
+    //Focus to another element and wait for all run loop code to finish before teardown.
+    find('#dummy-input').focus();
+    wait();
 
   });
 });
