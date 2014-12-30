@@ -1,3 +1,8 @@
 html, body {
   margin: 20px;
 }
+
+#dummy-input {
+  position: absolute;
+  left: -500px;
+}
