@@ -1,6 +1,7 @@
 # ember-cli-bm-select
 
 [![Build Status](https://travis-ci.org/blessenm/ember-cli-bm-select.svg)](https://travis-ci.org/blessenm/ember-cli-bm-select)
+[![npm version](https://badge.fury.io/js/ember-cli-bm-select.svg)](http://badge.fury.io/js/ember-cli-bm-select)
 
 bm-select is an ember addon component that provides the functionality of a select box.
 It allows you to specify templates for both the options and the selected option. It supports keyboard navigation and WAI-ARIA guidelines.
