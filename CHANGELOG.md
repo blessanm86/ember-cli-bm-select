@@ -1,3 +1,10 @@
+## 0.0.2 (2015-01-01)
+
+Bugfixes:
+
+  - Options menu now closes when clicked outside of the select box. (#5)
+  - Placeholder option can now be added. (#4)
+
 ## 0.0.1 (2014-12-07)
 
 Bugfixes:
