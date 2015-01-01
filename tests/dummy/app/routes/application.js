@@ -11,6 +11,5 @@ export default Em.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
         controller.set('selectedCountry', Em.get(model, 'countriesObj.2.name'));
-        //controller.set('selectedCountry', 'India');
     }
 });

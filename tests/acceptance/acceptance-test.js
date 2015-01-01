@@ -49,7 +49,7 @@ test("bm-select Acceptance Test", function() {
     var selectedOptionValue = find('bm-option[aria-checked=true]').text().trim();
     equal(optionValue, selectedOptionValue, "The correct bm-option has been checked after option click");
     find('bm-select').click().trigger(keyDown(38));
-    optionValue = find('bm-option:eq(0)').click().text().trim();
+    optionValue = find('bm-option:eq(2)').click().text().trim();
     selectedOptionValue = find('bm-option[aria-checked=true]').text().trim();
     equal(optionValue, selectedOptionValue, "The correct bm-option has been checked after option keyboard navigation");
 
@@ -57,10 +57,19 @@ test("bm-select Acceptance Test", function() {
     var value = find('#country-value').text();
     equal(value, selectedOptionValue, "The actions from the component are triggered properly on option selection");
 
+    //Ckeck if action triggered is correct when placeholder is clicked
+    find('bm-option:eq(0)').click();
+    var actionValue = find('#country-value').text();
+    var placeholderValue = '';
+    equal(actionValue, placeholderValue, "The actions from the component are triggered properly on placeholder selection");
+
     //Focus to another element and wait for all run loop code to finish before teardown.
     find('#dummy-input').focus();
     wait();
 
+    //Check if options menu closed after focus set to another element
+    equal(find('bm-select').attr('aria-expanded'), "false", "bm-select aria-expanded is set to false on focus set to outside element.");
+    equal(find('bm-select bm-options').css('display'), "none", "bm-options is closed when focus is set to outside element.");
   });
 });
 

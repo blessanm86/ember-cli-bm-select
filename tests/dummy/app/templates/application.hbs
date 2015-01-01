@@ -1,12 +1,19 @@
 <h2 id='title'>Welcome to Ember.js</h2>
 
+<p>The selected country is <span id="country-value">{{country}}</span></p>
+
 {{#bm-select value=selectedCountry action="countryChanged"}}
 
     {{#bm-selected}}
-        {{selectedCountry}}
+        {{#if selectedCountry}}
+            {{selectedCountry}}
+        {{else}}
+            Select a country
+        {{/if}}
     {{/bm-selected}}
 
     {{#bm-options}}
+        {{#bm-option}}Select a country{{/bm-option}}
         {{#each item in model.countriesObj}}
             {{#bm-option data=item key="name"}}
                 {{item.name}}
@@ -17,5 +24,3 @@
 {{/bm-select}}
 
 {{input id="dummy-input"}}
-
-<p>The selected country is <span id="country-value">{{country}}</span></p>
