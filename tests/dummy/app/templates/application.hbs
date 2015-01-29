@@ -15,7 +15,7 @@
     {{#bm-options}}
         {{#bm-option}}Select a country{{/bm-option}}
         {{#each item in model.countriesObj}}
-            {{#bm-option data=item key="name"}}
+            {{#bm-option data=item key="name" isDisabled=item.disabled}}
                 {{item.name}}
             {{/bm-option}}
         {{/each}}

@@ -203,8 +203,11 @@ export default Em.Component.extend({
       case 13:
         if(this.get('isOpen')) {
           var index = this.get('options.focusIndex');
-          this.get('options.options').objectAt(index).selectOption();
-          this.closeOptions();
+          var option = this.get('options.options').objectAt(index);
+          option.selectOption(event);
+          if(!option.get('isDisabled')) {
+            this.closeOptions();
+          }
         } else {
           this.openOptions();
         }

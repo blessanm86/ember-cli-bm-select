@@ -7,10 +7,12 @@ export default Em.Component.extend({
   attributeBindings: [
     'role',
     'ariaChecked:aria-checked',
+    'ariaDisabled:blessan',
     'tabindex',
     'value',
     'data',
-    'key'
+    'key',
+    'isDisabled'
   ],
 
   /**
@@ -32,6 +34,12 @@ export default Em.Component.extend({
   ariaChecked: function() {
     return this.get('isSelected')+'';
   }.property('isSelected'),
+
+  ariaDisabled: function() {
+    return Boolean(this.get('isDisabled')).toString();
+  }.property('isDisabled'),
+
+  isDisabled: false,
 
   /**
    * Allows the component to get focus on tab press.
@@ -171,8 +179,13 @@ export default Em.Component.extend({
    *
    * @method selectOption
    */
-  selectOption: function() {
-    this.get('select').selectOption(this);
+  selectOption: function(event) {
+    if(!this.get('isDisabled')) {
+      this.get('select').selectOption(this);
+    } else {
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }.on('click')
 
 });

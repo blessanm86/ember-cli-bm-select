@@ -5,7 +5,7 @@ export default Em.Route.extend({
         return {
             title: 'BM Ember Select Box',
             countriesArr: ['France', 'Germany', 'India', 'China'],
-            countriesObj: [{name:'France'}, {name:'Germany'}, {name:'India'}, {name:'China'}]
+            countriesObj: [{name:'France'}, {name:'Germany', disabled: true}, {name:'India'}, {name:'China'}]
         };
     },
     setupController: function(controller, model) {
