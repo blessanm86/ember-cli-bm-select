@@ -63,6 +63,12 @@ test("bm-select Acceptance Test", function() {
     var placeholderValue = '';
     equal(actionValue, placeholderValue, "The actions from the component are triggered properly on placeholder selection");
 
+    //Check if disabled options are not being selectable.
+    //The following actions should not make any change to values so we can reuse above tests.
+    find('bm-option:eq(4)').click();
+    actionValue = find('#country-value').text();
+    equal(actionValue, placeholderValue, "Clicking a disabled option does not change the selected value.");
+
     //Focus to another element and wait for all run loop code to finish before teardown.
     find('#dummy-input').focus();
     wait();

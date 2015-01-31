@@ -35,5 +35,4 @@ bm-selected:after {
 
 bm-option[aria-disabled="true"] {
     background-color: #ccc;
-    outline: none;
 }
