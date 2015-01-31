@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-bm-select",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "description": "bm-select is a customizable select component that supports keyboard navigation and WAI-ARIA",
   "directories": {
     "doc": "doc",
