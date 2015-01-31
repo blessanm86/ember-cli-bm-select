@@ -7,7 +7,7 @@ export default Em.Component.extend({
   attributeBindings: [
     'role',
     'ariaChecked:aria-checked',
-    'ariaDisabled:blessan',
+    'ariaDisabled:aria-disabled',
     'tabindex',
     'value',
     'data',

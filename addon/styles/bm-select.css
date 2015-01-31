@@ -32,3 +32,8 @@ bm-selected:after {
     float: right;
     margin-top: 3px;
 }
+
+bm-option[aria-disabled="true"] {
+    background-color: #ccc;
+    outline: none;
+}
