@@ -53,11 +53,12 @@ You know are given 4 components which needed to be used together for the addon t
    This component should be a direct child of `bm-select`.
 
 4. __bm-option__
-   This component should be a direct child of 'bm-options'. This should be used as a block component where you specify how the option should be rendered. The template data comes from the parent context. This componenets take 3 options - value, data and key. __Either the value or data,key pair should be specified for the component__.
+   This component should be a direct child of 'bm-options'. This should be used as a block component where you specify how the option should be rendered. The template data comes from the parent context. This componenets take 4 options - value, data key and isDisabled. __Either the value or data,key pair should be specified for the component__.
    * `value (optional)` - The value of the option. Must be a primitive type like string or integer.
    * `data (optional)` - A object that contains the data for the option in which one proerty will hold the value for the option. Must be an object.
    * `key (optional)` - This is the key on the data object in which the value can be accessed.
    When data,key combination is given, the value will be taken like value = data.get(key); Must be a string.
+   * `isDisabled (optional)` - If you set isDisabled to true, the option will be disabled.
 
 ###Keyboard Support
 You can interact with the component using the keyboard. Once the component has focus you can use the down arrow or enter button to open the options dropdown.
