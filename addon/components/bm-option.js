@@ -183,8 +183,10 @@ export default Em.Component.extend({
     if(!this.get('isDisabled')) {
       this.get('select').selectOption(this);
     } else {
-      event.preventDefault();
-      event.stopPropagation();
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
     }
   }.on('click')
 
