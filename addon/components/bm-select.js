@@ -157,7 +157,7 @@ export default Em.Component.extend({
       Em.run.later(this, function() {
         var focussedElement = document.activeElement;
         var target = this.$();
-        if (target.length) {
+        if (target) {
           var isFocussedOut = target.has(focussedElement).length === 0 && !this.$().is(focussedElement);
 
           if(isFocussedOut) {
