@@ -156,10 +156,13 @@ export default Em.Component.extend({
     if(this.get('isOpen')) {
       Em.run.later(this, function() {
         var focussedElement = document.activeElement;
-        var isFocussedOut = this.$().has(focussedElement).length === 0 && !this.$().is(focussedElement);
+        var target = this.$();
+        if (target) {
+          var isFocussedOut = target.has(focussedElement).length === 0 && !target.is(focussedElement);
 
-        if(isFocussedOut) {
-          this.closeOptions({focus:false});
+          if(isFocussedOut) {
+            this.closeOptions({focus:false});
+          }
         }
       }, 0);
     }
