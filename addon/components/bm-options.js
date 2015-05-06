@@ -15,9 +15,9 @@ export default Em.Component.extend({
    * @type String
    * @private
    */
-  ariaHidden: function() {
+  ariaHidden: Em.computed('isVisible', function() {
     return !this.get('isVisible')+'';
-  }.property('isVisible'),
+  }),
 
   /**
    * This flag is set to true/false based on whether the dropdown is
@@ -66,9 +66,9 @@ export default Em.Component.extend({
    * @property selectedIndex
    * @type Number
    */
-  selectedIndex: function() {
+  selectedIndex: Em.computed('selectedOption', function() {
     return this.get('options').indexOf(this.get('selectedOption'));
-  }.property('selectedOption'),
+  }),
 
   /**
    * Creates the options ArrayProxy on init (otherwise would be shared by every
@@ -76,18 +76,18 @@ export default Em.Component.extend({
    *
    * @private
    */
-  setDefualts: function() {
-    this.set('options', Em.ArrayProxy.create({content: []}));
-  }.on('init'),
+  setDefaults: Em.on('init', function() {
+    this.set('options', Em.ArrayProxy.create({content: Em.A([])}));
+  }),
 
   /**
    * Registers this options with the BmSelectComponent instance.
    *
    * @method registerWithSelect
    */
-  registerWithSelect: function() {
+  registerWithSelect: Em.on('willInsertElement', function() {
     this.get('select').registerOptions(this);
-  }.on('willInsertElement'),
+  }),
 
   /**
    * Register the BmOptionComponent instance.

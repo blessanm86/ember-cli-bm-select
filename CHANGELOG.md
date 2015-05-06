@@ -2,7 +2,7 @@
 
 Bugfixes:
 
-  - [#7](https://github.com/blessenm/ember-cli-bm-select/pull/7/files) - Don't break when an event isn't passed in. ([@jkatsnelson](https://github.com/jkatsnelson))
+  - [#7](https://github.com/blessenm/ember-cli-bm-select/pull/7) - Don't break when an event isn't passed in. ([@jkatsnelson](https://github.com/jkatsnelson))
   - [#8](https://github.com/blessenm/ember-cli-bm-select/pull/8) - Dont throw error when there is no element. ([@jkatsnelson](https://github.com/jkatsnelson))
 
 ## 0.1.0 (2015-01-31)

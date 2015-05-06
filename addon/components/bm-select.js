@@ -48,9 +48,9 @@ export default Em.Component.extend({
    * @type String
    * @private
    */
-  ariaExpanded: function() {
+  ariaExpanded: Em.computed('isOpen', function() {
     return this.get('isOpen')+'';
-  }.property('isOpen'),
+  }),
 
   /**
    * Allows the component to get focus on tab press.
@@ -108,13 +108,13 @@ export default Em.Component.extend({
    *
    * @method toggleOptions
    */
-  toggleOptions: function() {
+  toggleOptions: Em.on('click', function() {
     if(this.get('isOpen')) {
       this.closeOptions();
     } else {
       this.openOptions();
     }
-  }.on('click'),
+  }),
 
   /**
    * Opens the dropdown.
@@ -152,7 +152,7 @@ export default Em.Component.extend({
    *
    * @method lostFocus
    */
-  lostFocus: function() {
+  lostFocus: Em.on('focusOut', function() {
     if(this.get('isOpen')) {
       Em.run.later(this, function() {
         var focussedElement = document.activeElement;
@@ -166,7 +166,7 @@ export default Em.Component.extend({
         }
       }, 0);
     }
-  }.on('focusOut'),
+  }),
 
   /**
    * Handles the keydown event once the component gains focus.
@@ -174,7 +174,7 @@ export default Em.Component.extend({
    *
    * @method navigateOnKeyDown
    */
-  navigateOnKeyDown: function(event) {
+  navigateOnKeyDown: Em.on('keyDown', function(event) {
     var handled = false;
 
     switch(event.keyCode) {
@@ -221,6 +221,6 @@ export default Em.Component.extend({
     if(handled) {
       event.preventDefault();
     }
-  }.on('keyDown')
+  })
 
 });

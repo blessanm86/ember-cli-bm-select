@@ -31,13 +31,13 @@ export default Em.Component.extend({
    * @type String
    * @private
    */
-  ariaChecked: function() {
+  ariaChecked: Em.computed('isSelected', function() {
     return this.get('isSelected')+'';
-  }.property('isSelected'),
+  }),
 
-  ariaDisabled: function() {
+  ariaDisabled: Em.computed('isDisabled', function() {
     return Boolean(this.get('isDisabled')).toString();
-  }.property('isDisabled'),
+  }),
 
   isDisabled: false,
 
@@ -47,9 +47,9 @@ export default Em.Component.extend({
    * @property tabindex
    * @type Number
    */
-  tabindex: function() {
+  tabindex: Em.computed('isFocused', function() {
     return this.get('isFocused')? 0 : -1;
-  }.property('isFocused'),
+  }),
 
   /**
    * The value of the this option. Must be a primitive value.
@@ -97,9 +97,9 @@ export default Em.Component.extend({
    * @property index
    * @type Number
    */
-  index: function() {
+  index: Em.computed('options.options.@each', function() {
     return this.get('options.options').indexOf(this);
-  }.property('options.options.@each'),
+  }),
 
   /**
    * Whether this option is selected or not.
@@ -107,9 +107,9 @@ export default Em.Component.extend({
    * @property isSelected
    * @type Boolean
    */
-  isSelected: function() {
+  isSelected: Em.computed('select.selectedOption', function() {
     return this.get('select.selectedOption') === this;
-  }.property('select.selectedOption'),
+  }),
 
   /**
    * Whether this option is focussed or not.
@@ -117,9 +117,9 @@ export default Em.Component.extend({
    * @property isFocused
    * @type Boolean
    */
-  isFocused: function() {
+  isFocused: Em.computed('options.focusIndex', function() {
     return this.get('options.focusIndex') === this.get('index');
-  }.property('options.focusIndex'),
+  }),
 
   /**
    * Set the value and data property based on what is set.
@@ -129,7 +129,7 @@ export default Em.Component.extend({
    * @method setValueBasedOnKey
    * @private
    */
-  setValueBasedOnKey: function() {
+  setValueBasedOnKey: Em.on('init', function() {
     //Array of primitive values are the items. So value is already set.
     //Setting data same as value
     if(this.get('value')) {
@@ -139,25 +139,25 @@ export default Em.Component.extend({
       var key = 'data.' + this.get('key');
       this.set('value', this.get(key));
     }
-  }.on('init'),
+  }),
 
   /**
    * Registers this option with the BmOptionsComponent instance.
    *
    * @method registerWithOptions
    */
-  registerWithOptions: function() {
+  registerWithOptions: Em.on('willInsertElement', function() {
     this.get('options').registerOption(this);
-  }.on('willInsertElement'),
+  }),
 
   /**
    * Remove this option with the BmOptionsComponent instance.
    *
    * @method unregisterWithOptions
    */
-  unregisterWithOptions: function() {
+  unregisterWithOptions: Em.on('willDestroyElement', function() {
     this.get('options').unregisterOption(this);
-  }.on('willDestroyElement'),
+  }),
 
   /**
    * Observe the passed in selected value in the BmSelect component and update
@@ -179,7 +179,7 @@ export default Em.Component.extend({
    *
    * @method selectOption
    */
-  selectOption: function(event) {
+  selectOption: Em.on('click', function() {
     if(!this.get('isDisabled')) {
       this.get('select').selectOption(this);
     } else {
@@ -188,6 +188,6 @@ export default Em.Component.extend({
         event.stopPropagation();
       }
     }
-  }.on('click')
+  })
 
 });
