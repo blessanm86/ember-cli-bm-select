@@ -1,5 +1,21 @@
 import Em from 'ember';
 
+
+/**
+   * Observe the passed in selected value in the BmSelect component and update
+   * references and selections.
+   *
+   * @method selectValueObserver
+   */
+function selectFromSelectValue() {
+    //Ignore if already selected
+  if(this.get('isSelected')) { return; }
+
+  if(this.get('select.value') === this.get('value')) {
+    this.selectOption();
+  }
+}
+
 export default Em.Component.extend({
 
   tagName: 'bm-option',
@@ -159,27 +175,30 @@ export default Em.Component.extend({
     this.get('options').unregisterOption(this);
   }),
 
+
+
   /**
    * Observe the passed in selected value in the BmSelect component and update
    * references and selections.
    *
-   * @method selectFromSelectValue
+   * @method selectValueObserver
    */
-  selectFromSelectValue: function() {
-    //Ignore if already selected
-    if(this.get('isSelected')) { return; }
+  observeSelectValue: Em.observer('select.value', selectFromSelectValue),
 
-    if(this.get('select.value') === this.get('value')) {
-      this.selectOption();
-    }
-  }.observes('select.value').on('willInsertElement'),
+  /**
+   * Observe the passed in selected value in the BmSelect component and update
+   * references and selections.
+   *
+   * @method willInsertOption
+   */
+  willInsertOption: Em.on('willInsertElement', selectFromSelectValue),
 
   /**
    * Select an option. Bound to click.
    *
    * @method selectOption
    */
-  selectOption: Em.on('click', function() {
+  selectOption: Em.on('click', function(event) {
     if(!this.get('isDisabled')) {
       this.get('select').selectOption(this);
     } else {

@@ -77,7 +77,7 @@ export default Em.Component.extend({
    * @private
    */
   setDefaults: Em.on('init', function() {
-    this.set('options', Em.ArrayProxy.create({content: Em.A([])}));
+    this.set('options', Em.ArrayProxy.create({content: Em.A()}));
   }),
 
   /**
