@@ -2,11 +2,11 @@
 
 <p>The selected country is <span id="country-value">{{country}}</span></p>
 
-{{#bm-select value=selectedCountry action="countryChanged"}}
+{{#bm-select value=model.selectedCountry action="countryChanged"}}
 
     {{#bm-selected}}
-        {{#if selectedCountry}}
-            {{selectedCountry}}
+        {{#if model.selectedCountry}}
+            {{model.selectedCountry}}
         {{else}}
             Select a country
         {{/if}}
