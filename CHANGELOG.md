@@ -2,14 +2,14 @@
 
 Bugfixes:
 
-  - Don't break when an event isn't passed in. [(#7)](https://github.com/blessenm/ember-cli-bm-select/pull/7/files)
-  - Fixed an error that happened when the run loop code executed after the an element was destroyed. [(#8)](https://github.com/blessenm/ember-cli-bm-select/pull/8)
+  - [#7](https://github.com/blessenm/ember-cli-bm-select/pull/7/files) - Don't break when an event isn't passed in. ([@jkatsnelson](https://github.com/jkatsnelson))
+  - [#8](https://github.com/blessenm/ember-cli-bm-select/pull/8) - Dont throw error when there is no element. ([@jkatsnelson](https://github.com/jkatsnelson))
 
 ## 0.1.0 (2015-01-31)
 
 Features:
 
-  - Now options can be disabled by setting the `isDiabled` option to true for `bm-option` (#6)
+  - [#6](https://github.com/blessenm/ember-cli-bm-select/pull/6) - Now options can be disabled by setting the `isDiabled` option to true for `bm-option`.
 
 Documentation:
   - Added documentation relating to disabling options.
