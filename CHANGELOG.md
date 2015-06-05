@@ -1,3 +1,7 @@
+## 0.1.2 (2015-06-05)
+  - Added `demoURL` to package.json to enable demo listing in emberaddons.com and emberobserver.com
+
+
 ## 0.1.1 (2015-05-06)
 
 Bugfixes:
