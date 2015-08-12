@@ -1,5 +1,6 @@
 import Em from 'ember';
-
+import BmSelect from './bm-select';
+import BmOptions from './bm-options';
 
 /**
    * Observe the passed in selected value in the BmSelect component and update
@@ -97,7 +98,9 @@ export default Em.Component.extend({
    * @property select
    * @type BmSelect
    */
-  select: Em.computed.alias('parentView.parentView'),
+  select: Em.computed(function(){
+    return this.nearestOfType(BmSelect);
+  }),
 
   /**
    * Reference to the BmOptionsComponent instance.
@@ -105,7 +108,9 @@ export default Em.Component.extend({
    * @property options
    * @type BmOptions
    */
-  options: Em.computed.alias('parentView'),
+  options: Em.computed(function(){
+    return this.nearestOfType(BmOptions);
+  }),
 
   /**
    * The index of this option in the BmOptionsComponent instance.
