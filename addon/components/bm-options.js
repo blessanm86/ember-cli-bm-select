@@ -1,4 +1,5 @@
 import Em from 'ember';
+import BmSelect from './bm-select';
 
 export default Em.Component.extend({
 
@@ -26,7 +27,7 @@ export default Em.Component.extend({
    * @property isVisible
    * @type Boolean
    */
-  isVisible: Em.computed.alias('parentView.isOpen'),
+  isVisible: Em.computed.alias('select.isOpen'),
 
   /**
    * Reference to the BmSelectComponent instance.
@@ -34,7 +35,9 @@ export default Em.Component.extend({
    * @property select
    * @type BmSelect
    */
-  select: Em.computed.alias('parentView'),
+  select: Em.computed(function(){
+    return this.nearestOfType(BmSelect);
+  }),
 
   /**
    * Reference to the selected BmOptionComponent instance.
@@ -42,7 +45,7 @@ export default Em.Component.extend({
    * @property selectedOption
    * @type BmOption
    */
-  selectedOption: Em.computed.alias('parentView.selectedOption'),
+  selectedOption: Em.computed.alias('select.selectedOption'),
 
   /**
    * Storage for all BmOption components, facilitating keyboard navigation.
