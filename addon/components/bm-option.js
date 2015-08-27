@@ -118,7 +118,7 @@ export default Em.Component.extend({
    * @property index
    * @type Number
    */
-  index: Em.computed('options.options.@each', function() {
+  index: Em.computed('options.options.[]', function() {
     return this.get('options.options').indexOf(this);
   }),
 

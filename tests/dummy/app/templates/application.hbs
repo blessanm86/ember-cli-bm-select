@@ -1,4 +1,4 @@
-<h2 id='title'>Welcome to Ember.js</h2>
+<h2 id="title">Welcome to Ember</h2>
 
 <p>The selected country is <span id="country-value">{{country}}</span></p>
 
@@ -14,7 +14,7 @@
 
     {{#bm-options}}
         {{#bm-option}}Select a country{{/bm-option}}
-        {{#each item in model.countriesObj}}
+        {{#each model.countriesObj as |item|}}
             {{#bm-option data=item key="name" isDisabled=item.disabled}}
                 {{item.name}}
             {{/bm-option}}
