@@ -5,6 +5,8 @@ export default Em.Component.extend({
 
   tagName: 'bm-options',
 
+  classNameBindings: ['bmOptionsShow'],
+
   attributeBindings: [
     'ariaHidden:aria-hidden'
   ],
@@ -16,18 +18,18 @@ export default Em.Component.extend({
    * @type String
    * @private
    */
-  ariaHidden: Em.computed('isVisible', function() {
-    return !this.get('isVisible')+'';
+  ariaHidden: Em.computed('isOpen', function() {
+    return !this.get('isOpen')+'';
   }),
 
   /**
    * This flag is set to true/false based on whether the dropdown is
    * opened/closed.
    *
-   * @property isVisible
+   * @property isOpen
    * @type Boolean
    */
-  isVisible: Em.computed.alias('select.isOpen'),
+  isOpen: Em.computed.alias('select.isOpen'),
 
   /**
    * Reference to the BmSelectComponent instance.

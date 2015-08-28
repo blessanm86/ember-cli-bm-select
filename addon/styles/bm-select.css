@@ -16,9 +16,9 @@ bm-options {
     right: 0;
 }
 
-/*bm-select.is-open > bm-options {
+bm-select.is-open > bm-options {
     display: block;
-}*/
+}
 
 bm-selected, bm-option {
     padding: 5px; /*Needs to be removed from default styles*/
