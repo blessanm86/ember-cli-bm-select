@@ -128,8 +128,8 @@ test("bm-select Acceptance Test", function() {
   });
 });
 
-function keyDown(code) {
-    var e = $.Event("keydown");
-    e.which = e.keyCode = code;
-    return e;
-}
+// function keyDown(code) {
+//     var e = $.Event("keydown");
+//     e.which = e.keyCode = code;
+//     return e;
+// }

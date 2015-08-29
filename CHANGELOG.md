@@ -1,3 +1,10 @@
+## 0.1.3 (2015-08-05)
+
+Bugfixes:
+
+  - [#9](https://github.com/blessenm/ember-cli-bm-select/pull/9) - substitute reference to parentView with call to this.nearestOfType. ([@pavloo](https://github.com/pavloo))
+  - Now bm-options visibility is toggled via the 'is-open' class on bm-select instead of toggling the `isVisible` property of bm-options. This should take care of any warnings shown from the CSP addon about using inline styles.
+
 ## 0.1.2 (2015-06-05)
   - Added `demoURL` to package.json to enable demo listing in emberaddons.com and emberobserver.com
 
