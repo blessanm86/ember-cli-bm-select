@@ -7,7 +7,7 @@ bm-select is an ember addon component that provides the functionality of a selec
 It allows you to specify templates for both the options and the selected option. It supports keyboard navigation and WAI-ARIA guidelines.
 
 ## Demo
-http://blessanmathew.com/ember-cli-bm-select
+https://ember-cli-bm-select.netlify.app
 
 ## Installation
 
